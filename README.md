@@ -1,9 +1,6 @@
-#Paper Sniffer Dog
+# Paper Sniffer Dog
 
-![dogs](href="//imgur.com/FYrdhK6)
-
-
-##Introdução
+## Introdução
 
 O objetivo do sistema é auxiliar um investidor nas suas decisões de comprar/vender ativos. Para tal, ele deve registrar periodicamente a cotação atual de ativos da B3 e também avisar, via e-mail, caso haja oportunidade de negociação.
 
@@ -14,7 +11,7 @@ Os seguintes requisitos funcionais são necessários:
 3. Enviar e-mail para o investidor sugerindo Compra sempre que o preço de um ativo monitorado cruzar o seu limite inferior, e sugerindo Venda sempre que o preço de um ativo monitorado cruzar o seu limite superior
 
 
-##Linha de pensamento construtivo
+## Linha de pensamento construtivo
 
 Para desenvolver o projeto, a ordem de criação dos elementos será a seguinte:
 

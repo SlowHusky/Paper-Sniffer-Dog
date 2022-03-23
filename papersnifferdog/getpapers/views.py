@@ -35,14 +35,15 @@ def get_papers(b3_papers):
     results = []
     for x in b3_papers:
         item = Ticker(x)
-    results.append(item)
+        print(item.history(period="2022"))
+        results.append(item.history(period="2022"))
     return results
 
 def homePageView(request):
-    data_papers = get_papers
-    print(data_papers)
+#    data_papers = get_papers(acoes)
+#    print(data_papers[12])
     context = {
-        'data_papers': data_papers,
+        'data_papers': acoes,
     }
     template = loader.get_template('getpapers/index.html')
     return HttpResponse(template.render(context, request))

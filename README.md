@@ -32,3 +32,4 @@ Para desenvolver o projeto, a ordem de criação dos elementos será a seguinte:
 2. Django 4
 3. JQuery
 4. SQLite
+5. Yahooquery (https://yahooquery.dpguthrie.com/)

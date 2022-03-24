@@ -33,3 +33,4 @@ Para desenvolver o projeto, a ordem de criação dos elementos será a seguinte:
 3. JQuery
 4. SQLite
 5. Yahooquery (https://yahooquery.dpguthrie.com/)
+6. Celery (Escalonador de tarefas)

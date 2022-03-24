@@ -8,7 +8,7 @@ class Papers(models.Model):
     description = models.TextField(("Description here"))
 
     def __str__(self):
-        return self.title
+        return self.symbol
 
 class Prices(models.Model):
     paper = models.ForeignKey(Papers, on_delete=models.CASCADE)
@@ -19,3 +19,4 @@ class Prices(models.Model):
     close_price = models.FloatField()
     volume = models.FloatField()
     adjclose = models.FloatField()
+    date_inserted = models.DateField()

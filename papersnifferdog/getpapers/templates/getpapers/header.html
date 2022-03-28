@@ -17,10 +17,20 @@
 
         $(document).ready(function() {
             $('#example').DataTable();
+            $('#example').css("margin", "0 auto");
         } );
         
         
     </script>
+    <style>
+      .footer {
+         position: fixed;
+         left: 0;
+         bottom: 0;
+         width: 100%;
+         text-align: center;
+      }
+      </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb- "><a class="navbar-brand" href="{% url 'index' %}">Paper Sniffer Dog</a>
@@ -36,7 +46,7 @@
                 <a class="nav-link" href="#">Empresas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Monitor</a>
+                <a class="nav-link" href="/getpapers/monitor">Monitor</a>
               </li>
             </ul>
     </nav>

@@ -17,3 +17,4 @@ def showOnePaper(acao):
           data.volume[0], data.high[0],
           data.low[0], data.adjclose[0],
           datetime.now())
+    return data

@@ -49,9 +49,10 @@ def homePageView(request):
 def monitorar(request):
     return HttpResponse("Teste")
 
-def empresas(request):
+def empresas(request,paper):
+    info = showOnePaper(paper)
     context ={
-        'data_papers': acoes,
+        'info': info,
     }
     return HttpResponse("Teste ações")
 

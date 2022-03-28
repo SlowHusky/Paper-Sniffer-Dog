@@ -1,0 +1,112 @@
+{% extends 'getpapers/header.html' %}
+
+{% block content %}
+
+<h1>Informações do papel</h1>
+<h2>Últimos dados:{{paper}}</h2>
+
+
+
+<table id="example" class="table table-striped"  style="width:100%">
+    <thead>
+        <tr>
+            <th>Item: Value</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>maxAge: {{info.maxAge}}</td>
+        </tr>
+        <tr>
+            <td>priceHint: {{info.priceHint}}</td>
+        </tr>
+        <tr>
+            <td>previousClose: {{info.previousClose}}</td>
+        </tr>
+        <tr>
+            <td>open: {{info.open}}</td>
+        </tr>
+        <tr>
+            <td>dayLow: {{info.dayLow}}</td>
+        </tr>
+        <tr>
+            <td>dayHight: {{info.dayHigh}}</td>
+        </tr>
+        <tr>
+            <td>regularMarketPreviousClose: {{info.regularMarketPreviousClose}}</td>
+        </tr>
+        <tr>
+            <td>{{info.regularMarketOpen}}</td>
+        </tr>
+        <tr>
+            <td>regularMarketOpen: {{info.regularMarketDayLow}}</td>
+        </tr>
+        <tr>
+            <td>regularMarketDayHigh: {{info.regularMarketDayHigh}}</td>
+        </tr>
+        <tr>
+            <td>dividendRate: {{info.dividendRate}}</td>
+        </tr>
+        <tr>
+            <td>dividendYield: {{info.dividendYield}}</td>
+        </tr>
+        <tr>
+            <td>exDividendDate: {{info.exDividendDate}}</td>
+        </tr>
+        <tr>
+            <td>payoutRatio: {{info.payoutRatio}}</td>
+        </tr>
+        <tr>
+            <td>beta: {{info.beta}}</td>
+        </tr>
+        <tr>
+            <td>trailingPE: {{info.trailingPE}}</td>
+        </tr>
+        <tr>
+            <td>forwardPE: {{info.forwardPE}}</td>
+        </tr>
+        <tr>
+            <td>volume: {{info.volume}}</td>
+        </tr>
+        <tr>
+            <td>regularMarketVolume: {{info.regularMarketVolume}}</td>
+        </tr>
+        <tr>
+            <td>averageVolume: {{info.averageVolume}}</td>
+        </tr>
+        <tr>
+            <td>averageVolume10days: {{info.averageVolume10days}}</td>
+        </tr>
+        <tr>
+            <td>averageDailyVolume10Day: {{info.averageDailyVolume10Day}}</td>
+        </tr>
+        <tr>
+            <td>bis: {{info.bid}}</td>
+        </tr>
+        <tr>
+            <td>ask: {{info.ask}}</td>
+        </tr>
+        <tr>
+            <td>bidSize: {{info.bidSize}}</td>
+        </tr>
+        <tr>
+            <td>askSize: {{info.askSize}}</td>
+        </tr>
+        <tr>
+            <td>marketCap: {{info.marketCap}}</td>
+        </tr>
+        <tr>
+            <td>currency: {{info.currency}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Item: Value</th>
+        </tr>
+    </tfoot>
+</table>
+
+{% include 'getpapers/footer.html' %}
+
+{% endblock content %}

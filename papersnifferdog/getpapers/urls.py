@@ -3,5 +3,5 @@ from .views import homePageView, empresas
 
 urlpatterns = [
     path('', homePageView, name='index'),
-    path(r'^(?P<paper>\w{5,6})/$', empresas, name='empresas'),
+    re_path(r'^empresas/(?P<paper>\w{5,6})/', empresas, name='empresas'),
 ]

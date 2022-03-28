@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.template import loader
 from yahooquery import Ticker
 from django.http import HttpResponse
-from .getdata import showAllPapers, showOnePaper
+from .getdata import showAllPapers, showOnePaper, showBalancePaper
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -50,11 +50,16 @@ def monitorar(request):
     return HttpResponse("Teste")
 
 def empresas(request,paper):
-    info = showOnePaper(paper)
+    paper = paper+'.SA'
+    info = showBalancePaper(paper)
+    info = info[paper]
+    print(info['regularMarketDayLow'])
     context ={
+        'paper':paper,
         'info': info,
     }
-    return HttpResponse("Teste ações")
+    template = loader.get_template('getpapers/empresas.html')
+    return HttpResponse(template.render(context, request))
 
 def primeiraExec(request):
     pass

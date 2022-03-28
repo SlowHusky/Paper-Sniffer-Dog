@@ -1,0 +1,28 @@
+{% extends 'getpapers/header.html' %}
+
+{% block content %}
+<div class="row d-flex justify-content-center">
+<h2>lista de ações:</h2>
+<table id="example" class="table table-hover" style="width:40%">
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome do papel</th>
+            <th scope="col">Monitorada</th>            
+        </tr>
+    </thead>
+    <tbody>
+        {% for x in acoes %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="/getpapers/empresas/{{x}}">{{x}}</a></td>
+            <td><input class="align-middle" type="checkbox"></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% include 'getpapers/footer.html' %}
+
+{% endblock content %}

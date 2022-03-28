@@ -46,11 +46,14 @@ def homePageView(request):
     template = loader.get_template('getpapers/index.html')
     return HttpResponse(template.render(context, request))
 
-def monitorar(request):
-    return HttpResponse("Teste")
+def monitor(request):
+    context = {
+        'acoes': acoes,
+    }
+    template = loader.get_template('getpapers/formulario.html')
+    return HttpResponse(template.render(context, request))
 
 def empresas(request,paper):
-    paper = paper+'.SA'
     info = showBalancePaper(paper)
     info = info[paper]
     print(info['regularMarketDayLow'])

@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
 from .models import Papers, Prices, Monitoring
+from .manipulations import getAllDataPapers, getPriceFromPaper
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -37,6 +38,11 @@ acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA"
 
 def homePageView(request):
     #teste
+    a = getAllDataPapers()
+    for x in a:
+        b = getPriceFromPaper(x.symbol)
+        print(b[0].ask)
+
     showOnePaper(acoes[1])
     context = {
         'data_papers': acoes,

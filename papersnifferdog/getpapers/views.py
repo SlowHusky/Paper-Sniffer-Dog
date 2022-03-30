@@ -1,19 +1,16 @@
-from multiprocessing import context
-import re
 from turtle import goto
 from django.shortcuts import render
-#from django.views.generic import TemplateView
 from django.template import loader
-from yahooquery import Ticker
 from django.http import HttpResponse
-from .getdata import showAllPapers, showOnePaper, showBalancePaper
+from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
+from datetime import datetime, time, date
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
         "AZUL4.SA", "B3SA3.SA", "BRSR6.SA", "BBSE3.SA", "BKBR3.SA", "BRML3.SA",
         "BRPR3.SA", "BBDC3.SA", "BBDC4.SA", "BRAP4.SA", "BBAS3.SA", "BRKM5.SA",
         "BRFS3.SA", "BPAC11.SA", "CAML3.SA", "CRFB3.SA", "CCRO3.SA", "CMIG3.SA",
-        "CMIG4.SA", "CESP6.SA", "CIEL3.SA", "CGAS5.SA", "CSMG3.SA", "CPLE6.SA",
+        "CMIG4.SA", "CIEL3.SA", "CGAS5.SA", "CSMG3.SA", "CPLE6.SA",
         "CSAN3.SA",  "CPFE3.SA", "CVCB3.SA", "CYRE3.SA", "DIRR3.SA",
         "DMMO3.SA", "ECOR3.SA", "ELET3.SA", "ELET6.SA", "EMBR3.SA", "ENBR3.SA",
         "ENGI11.SA", "ENEV3.SA", "EGIE3.SA", "EQTL3.SA", "EVEN3.SA", "EZTC3.SA",
@@ -30,7 +27,7 @@ acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA"
         "UNIP6.SA", "USIM5.SA", "VALE3.SA", "VLID3.SA", "VULC3.SA", "WEGE3.SA",
         "WIZS3.SA", "VIVA3.SA", "CEAB3.SA", "YDUQ3.SA", "COGN3.SA", "BIDI11.SA",
         "BIOM3.SA", "BPAN4.SA", "CARD3.SA", "FHER3.SA", "FRAS3.SA",
-        "FRTA3.SA", "GSHP3.SA", "GPIV33.SA", "LPSB3.SA", "LOGN3.SA", 
+        "FRTA3.SA", "GPIV33.SA", "LPSB3.SA", "LOGN3.SA", 
         "MILS3.SA", "OFSA3.SA", "OIBR3.SA", "PFRM3.SA", "ROMI3.SA",
         "PMAM3.SA", "RSID3.SA", "SCAR3.SA", "SGPS3.SA", "SHOW3.SA", "SLED3.SA",
         "TCSA3.SA", "TECN3.SA", "TELB4.SA", "TEND3.SA", "TPIS3.SA",
@@ -64,5 +61,18 @@ def empresas(request,paper):
     template = loader.get_template('getpapers/empresas.html')
     return HttpResponse(template.render(context, request))
 
-def primeiraExec(request):
-    pass
+def firstExec(request):
+    info = []
+    for x in acoes:
+        a = returnTicker(x)
+        b = a.financial_data
+        #c = a.quotes
+        a = a.summary_detail
+        now = datetime.now()
+        date1 = date.today()
+        print(x, now, b[x]['currentPrice'], a[x]['ask'], a[x]['bid'], a[x]['dayHigh'], a[x]['dayLow'], a[x]['open'], a[x]['previousClose'],
+        a[x]['volume'], date1)
+        info.append((x, now, b[x]['currentPrice'], a[x]['ask'], a[x]['bid'], a[x]['dayHigh'], a[x]['dayLow'], a[x]['open'], a[x]['previousClose'],
+        a[x]['volume'], date1))
+    print(info)
+    return HttpResponse("Finished")

@@ -14,3 +14,7 @@ def showOnePaper(acao):
 def showBalancePaper(acao):
     item = Ticker(acao)
     return item.summary_detail
+
+def returnTicker(acao):
+    item = Ticker(acao)
+    return item

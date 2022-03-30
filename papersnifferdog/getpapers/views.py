@@ -1,9 +1,10 @@
-from turtle import goto
+from datetime import datetime, time, date
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
+from django.utils import timezone
 from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
-from datetime import datetime, time, date
+from .models import Papers, Prices, Monitoring
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -62,17 +63,19 @@ def empresas(request,paper):
     return HttpResponse(template.render(context, request))
 
 def firstExec(request):
-    info = []
     for x in acoes:
         a = returnTicker(x)
         b = a.financial_data
-        #c = a.quotes
+        c = a.asset_profile
+        d = a.price
         a = a.summary_detail
-        now = datetime.now()
+        #now = datetime.now()
         date1 = date.today()
-        print(x, now, b[x]['currentPrice'], a[x]['ask'], a[x]['bid'], a[x]['dayHigh'], a[x]['dayLow'], a[x]['open'], a[x]['previousClose'],
-        a[x]['volume'], date1)
-        info.append((x, now, b[x]['currentPrice'], a[x]['ask'], a[x]['bid'], a[x]['dayHigh'], a[x]['dayLow'], a[x]['open'], a[x]['previousClose'],
-        a[x]['volume'], date1))
-    print(info)
+        query1 = Papers(symbol = x, description = c[x]['longBusinessSummary'], title = d[x]['longName'])
+        query1.save()
+
+        query2 = Prices(paper = query1, date_info = timezone.now(), price_now = b[x]['currentPrice'], ask = a[x]['ask'], bid =  a[x]['bid'],
+        high_price = a[x]['dayHigh'], low_price = a[x]['dayLow'], open_price = a[x]['open'], estimated_close_price = a[x]['previousClose'],
+        volume = a[x]['volume'])  
+        query2.save()
     return HttpResponse("Finished")

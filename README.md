@@ -15,9 +15,9 @@ Os seguintes requisitos funcionais são necessários:
 
 Para desenvolver o projeto, a ordem de criação dos elementos será a seguinte:
 
-1. Criação de uma consulta a API de ações da B3 **(ainda não desenvolvido)**
+1. Criação de uma consulta a API de ações da B3 **(desenvolvido)**
 2. Armazenar os dados da consulta em um banco de dados (usarei o sqlite3 por uma questão de conveniência. Quem testar o projeto saberá que ele foi escrito com um DB SQL e não precisará adicionar nada na sua máquina) **(ainda não desenvolvido)**
-3. Webpage para mostrar e listar às ações **(ainda não desenvolvido)**
+3. Webpage para mostrar e listar às ações **(desenvolvido)**
 4. Ferramentas para configurar os ativos monitorados **(ainda não desenvolvido)**
 5. Sistema de envio de e-mails **(ainda não desenvolvido)**
 

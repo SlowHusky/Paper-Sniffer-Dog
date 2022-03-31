@@ -9,48 +9,34 @@
 <table id="example" class="table table-striped"  style="width:100%">
     <thead>
         <tr>
-            <th>Título</th>
-            <th>Símbolo</th>
-            <th>Horário</th>
-            <th>Menor Preço</th>
-            <th>Maior Preço</th>
-            <th>Volume</th>
+            <th>Ação</th>
+            <th>Preço atual</th>
+            <th>Menor oferta de venda</th>
+            <th>Maior oferta de compra</th>
+            <th>Abertura</th>
+            <th>Horario</th>
         </tr>
     </thead>
     <tbody>
+        {% for a,b,c,d,e,f in data_papers %}
         <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
+            <td>{{ a }}</td>
+            <td>{{ b }}</td>
+            <td>{{ c }}</td>
+            <td>{{ d }}</td>
+            <td>{{ e }}</td>
+            <td>{{ f }}</td>
         </tr>
-        <tr>
-            <td>Doris Wilder</td>
-            <td>Sales Assistant</td>
-            <td>Sydney</td>
-            <td>23</td>
-            <td>2010/09/20</td>
-            <td>$85,600</td>
-        </tr>
-        <tr>
-            <td>Donna Snider</td>
-            <td>Customer Support</td>
-            <td>New York</td>
-            <td>27</td>
-            <td>2011/01/25</td>
-            <td>$112,000</td>
-        </tr>
+        {% endfor %}
     </tbody>
     <tfoot>
         <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
+            <th>Ação</th>
+            <th>Preço atual</th>
+            <th>Menor oferta de venda</th>
+            <th>Maior oferta de compra</th>
+            <th>Abertura</th>
+            <th>Horario</th>
         </tr>
     </tfoot>
 </table>

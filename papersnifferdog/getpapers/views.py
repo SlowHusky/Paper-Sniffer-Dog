@@ -37,15 +37,13 @@ acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA"
 
 
 def homePageView(request):
-    #teste
+    data_papers = []
     a = getAllDataPapers()
     for x in a:
         b = getPriceFromPaper(x.symbol)
-        print(b[0].ask)
-
-    showOnePaper(acoes[1])
+        data_papers.append((x.symbol, b[0].price_now, b[0].ask, b[0].bid, b[0].open_price, b[0].date_info))
     context = {
-        'data_papers': acoes,
+        'data_papers': data_papers,
     }
     template = loader.get_template('getpapers/index.html')
     return HttpResponse(template.render(context, request))

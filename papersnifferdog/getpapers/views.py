@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
 from .models import Papers, Prices, Monitoring
-from .manipulations import getAllDataPapers, getPriceFromPaper
+from .manipulations import getAllDataPapers, getPriceFromPaper, getAllMonitoring
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -49,8 +49,15 @@ def homePageView(request):
     return HttpResponse(template.render(context, request))
 
 def monitor(request):
+    list_monitored = []
+    data_name = []
+    a = getAllDataPapers()
+    for x in a:
+        data_name.append(x.symbol)
+    print(getAllMonitoring())
     context = {
-        'acoes': acoes,
+        'acoes': data_name,
+        'monitored': list_monitored,
     }
     template = loader.get_template('getpapers/formulario.html')
     return HttpResponse(template.render(context, request))

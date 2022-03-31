@@ -8,14 +8,16 @@
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Nome da empresa</th>
             <th scope="col">Nome do papel</th>
             <th scope="col">Monitorada</th>            
         </tr>
     </thead>
     <tbody>
-        {% for x in acoes %}
+        {% for x in data_name %}
         <tr>
             <th scope="row">{{forloop.counter}}</th>
+            <td></td>
             <td><a href="/getpapers/empresas/{{x}}">{{x}}</a></td>
             <td><input class="align-middle" type="checkbox"></td>
         </tr>

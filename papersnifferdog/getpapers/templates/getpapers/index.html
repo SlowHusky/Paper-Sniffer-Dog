@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h1>Welcome to Paper Sniffer Dog!</h1>
 <h2>Últimos dados:</h2>
 
 
 <table id="example" class="table table-striped"  style="width:100%">
     <thead>
         <tr>
+            <th>Nome da Empresa</th>
             <th>Ação</th>
             <th>Preço atual</th>
             <th>Menor oferta de venda</th>
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for a,b,c,d,e,f in data_papers %}
+        {% for a,b,c,d,e,f,g in data_papers %}
         <tr>
             <td>{{ a }}</td>
             <td>{{ b }}</td>
@@ -26,11 +26,13 @@
             <td>{{ d }}</td>
             <td>{{ e }}</td>
             <td>{{ f }}</td>
+            <td>{{ g }}</td>
         </tr>
         {% endfor %}
     </tbody>
     <tfoot>
         <tr>
+            <th>Nome da Empresa</th>
             <th>Ação</th>
             <th>Preço atual</th>
             <th>Menor oferta de venda</th>

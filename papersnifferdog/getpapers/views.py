@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
 from .models import Papers, Prices, Monitoring
-from .manipulations import getAllDataPapers, getPriceFromPaper, getAllMonitoring
+from .manipulations import getAllDataPapers, getPriceFromPaper, getAllMonitoring, getMonitoredSymbols
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -41,7 +41,7 @@ def homePageView(request):
     a = getAllDataPapers()
     for x in a:
         b = getPriceFromPaper(x.symbol)
-        data_papers.append((x.symbol, b[0].price_now, b[0].ask, b[0].bid, b[0].open_price, b[0].date_info))
+        data_papers.append((x.title, x.symbol, b[0].price_now, b[0].ask, b[0].bid, b[0].open_price, b[0].date_info))
     context = {
         'data_papers': data_papers,
     }
@@ -49,15 +49,18 @@ def homePageView(request):
     return HttpResponse(template.render(context, request))
 
 def monitor(request):
-    list_monitored = []
+    list_monitored = getMonitoredSymbols()
     data_name = []
+    names = []
     a = getAllDataPapers()
     for x in a:
         data_name.append(x.symbol)
-    print(getAllMonitoring())
+        names.append(x.title)
+    print(list_monitored)
     context = {
-        'acoes': data_name,
+        'data_name': data_name,
         'monitored': list_monitored,
+        'names': names,
     }
     template = loader.get_template('getpapers/formulario.html')
     return HttpResponse(template.render(context, request))
@@ -80,8 +83,6 @@ def firstExec(request):
         c = a.asset_profile
         d = a.price
         a = a.summary_detail
-        #now = datetime.now()
-        date1 = date.today()
         query1 = Papers(symbol = x, description = c[x]['longBusinessSummary'], title = d[x]['longName'])
         query1.save()
 

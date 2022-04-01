@@ -15,4 +15,11 @@ def getPaperFromSymbol(paper):
 def getPriceFromPaper(paper):
     stock = getPaperFromSymbol(paper)
     return Prices.objects.filter(paper=stock)
-    
+
+def getMonitoredSymbols():
+    monitored =[]
+    for x in getAllDataPapers():
+        y = x.symbol
+        if Monitoring.objects.filter(paper = x):
+            monitored.append(y)
+    return monitored

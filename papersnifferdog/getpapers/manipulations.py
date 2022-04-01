@@ -23,3 +23,11 @@ def getMonitoredSymbols():
         if Monitoring.objects.filter(paper = x):
             monitored.append(y)
     return monitored
+
+def addMonitoredBySymbol(lista):
+    Monitoring.objects.all().delete()
+    for x in lista:
+        a = getPaperFromSymbol(x)
+        query = Monitoring(paper = a)
+        query.save()
+    print("Finnished")

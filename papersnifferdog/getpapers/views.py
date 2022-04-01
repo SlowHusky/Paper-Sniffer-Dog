@@ -1,11 +1,12 @@
 from datetime import datetime, time, date
-from django.shortcuts import render
+from genericpath import exists
+from django.shortcuts import render, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django.utils import timezone
 from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
 from .models import Papers, Prices, Monitoring
-from .manipulations import getAllDataPapers, getPriceFromPaper, getAllMonitoring, getMonitoredSymbols
+from .manipulations import getAllDataPapers, getPriceFromPaper, getAllMonitoring, getMonitoredSymbols, addMonitoredBySymbol
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -66,9 +67,9 @@ def monitor(request):
         template = loader.get_template('getpapers/formulario.html')
         return HttpResponse(template.render(context, request))
     else:
-        form = request.POST
-        print(form)
-        return HttpResponse("POST RECEBIDO!")
+        data = request.POST.getlist('check')
+        addMonitoredBySymbol(data)
+        return redirect('./')
 
 def empresas(request,paper):
     info = showBalancePaper(paper)
@@ -82,17 +83,21 @@ def empresas(request,paper):
     return HttpResponse(template.render(context, request))
 
 def firstExec(request):
-    for x in acoes:
-        a = returnTicker(x)
-        b = a.financial_data
-        c = a.asset_profile
-        d = a.price
-        a = a.summary_detail
-        query1 = Papers(symbol = x, description = c[x]['longBusinessSummary'], title = d[x]['longName'])
-        query1.save()
+    a = getAllDataPapers()
+    if (len(a)<2):
+        for x in acoes:
+            a = returnTicker(x)
+            b = a.financial_data
+            c = a.asset_profile
+            d = a.price
+            a = a.summary_detail
+            query1 = Papers(symbol = x, description = c[x]['longBusinessSummary'], title = d[x]['longName'])
+            query1.save()
 
-        query2 = Prices(paper = query1, date_info = timezone.now(), price_now = b[x]['currentPrice'], ask = a[x]['ask'], bid =  a[x]['bid'],
-        high_price = a[x]['dayHigh'], low_price = a[x]['dayLow'], open_price = a[x]['open'], estimated_close_price = a[x]['previousClose'],
-        volume = a[x]['volume'])  
-        query2.save()
-    return HttpResponse("Finished")
+            query2 = Prices(paper = query1, date_info = timezone.now(), price_now = b[x]['currentPrice'], ask = a[x]['ask'], bid =  a[x]['bid'],
+            high_price = a[x]['dayHigh'], low_price = a[x]['dayLow'], open_price = a[x]['open'], estimated_close_price = a[x]['previousClose'],
+            volume = a[x]['volume'])  
+            query2.save()
+        return redirect('./')
+    else:
+        return redirect('./')

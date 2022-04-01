@@ -16,6 +16,7 @@
     </thead>
     <tbody>
         <form action="." method="post">
+            {% csrf_token %}
         {% for x in data_name %} {% for nam in names %}
             {% if forloop.counter == forloop.parentloop.counter %}
                 <tr>
@@ -33,11 +34,11 @@
     </tbody>
     
 </table>
-
+</form>
 </div>
 <div class="text-center py-3 justify-content-center">
 <input class="btn btn-primary btn-sm" type="submit" value="Enviar para monitoramento">
-</form>
+
 </div>
 {% include 'getpapers/footer.html' %}
 

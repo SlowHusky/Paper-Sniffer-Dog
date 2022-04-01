@@ -1,9 +1,10 @@
 {% extends 'getpapers/header.html' %}
 
 {% block content %}
+
 <div class="row d-flex justify-content-center">
 <h2>lista de ações:</h2>
-<table id="example" class="table table-hover" style="width:40%">
+<table id="example" class="table table-hover text-center py-3" style="width:40%">
 
     <thead>
         <tr>
@@ -22,17 +23,21 @@
                     <td>{{ nam }}</td>
                     <td><a href="/getpapers/empresas/{{x}}">{{x}}</a></td>
                     <td>{% if x in monitored %}
-                            <input class="align-middle" type="checkbox" checked>
+                            <input class="align-middle" type="checkbox" value="{{x}}" checked>
                         {% else %}
-                            <input class="align-middle" type="checkbox">
+                            <input class="align-middle" type="checkbox" value="{{x}}">
                         {% endif %}</td>
                 </tr>
             {% endif %}
         {% endfor %}{% endfor %}
     </tbody>
+    
 </table>
-    <input type="submit" value="Enviar para monitoramento">
-    </form>
+
+</div>
+<div class="text-center py-3 justify-content-center">
+<input class="btn btn-primary btn-sm" type="submit" value="Enviar para monitoramento">
+</form>
 </div>
 {% include 'getpapers/footer.html' %}
 

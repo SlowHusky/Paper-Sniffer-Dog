@@ -49,21 +49,26 @@ def homePageView(request):
     return HttpResponse(template.render(context, request))
 
 def monitor(request):
-    list_monitored = getMonitoredSymbols()
-    data_name = []
-    names = []
-    a = getAllDataPapers()
-    for x in a:
-        data_name.append(x.symbol)
-        names.append(x.title)
-    print(list_monitored)
-    context = {
-        'data_name': data_name,
-        'monitored': list_monitored,
-        'names': names,
-    }
-    template = loader.get_template('getpapers/formulario.html')
-    return HttpResponse(template.render(context, request))
+    if request.method == "GET":
+        list_monitored = getMonitoredSymbols()
+        data_name = []
+        names = []
+        a = getAllDataPapers()
+        for x in a:
+            data_name.append(x.symbol)
+            names.append(x.title)
+        print(list_monitored)
+        context = {
+            'data_name': data_name,
+            'monitored': list_monitored,
+            'names': names,
+        }
+        template = loader.get_template('getpapers/formulario.html')
+        return HttpResponse(template.render(context, request))
+    else:
+        form = request.POST
+        print(form)
+        return HttpResponse("POST RECEBIDO!")
 
 def empresas(request,paper):
     info = showBalancePaper(paper)

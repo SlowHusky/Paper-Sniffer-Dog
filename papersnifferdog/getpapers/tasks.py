@@ -1,20 +1,21 @@
+from celery import Celery
 from celery.schedules import crontab
-from celery.decorators import task
-from celery.utils.log import get_task_logger
-from celery.decorators import periodic_task
+from celery import shared_task
 from .manipulations import getAllMonitoring, getPriceFromPaper
 
-logger = get_task_logger(__name__)
-
-
-
-@periodic_task(run_every=(crontab(minute='*/15')), name="some_task", ignore_result=True)
-def some_task():
-    print("OK!")
-
+app = Celery()
 #versão de teste
-@periodic_task(run_every=(crontab(minute='*/15')), name="verify_tunnel", ignore_result=True)
+
+@app.on_after_configure.connect
+def setup_periodic_tasks(sender, **kwargs):
+
+    sender.add_periodic_task(
+        crontab(minute="*"),
+        verify_tunnel(),
+    )
+@app.task
 def verify_tunnel():
+    print("start")
     papers = getAllMonitoring()
     for paper in papers:
         item = getPriceFromPaper(paper)
@@ -22,4 +23,4 @@ def verify_tunnel():
             print(f'Vender {{paper}}')
         else:
             print('Nada!')
-        logger.info('action executed')
+

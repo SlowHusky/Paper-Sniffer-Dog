@@ -42,10 +42,11 @@ def update_prices():
             c = a.asset_profile
             d = a.price
             a = a.summary_detail
+            
 
-            query2 = Prices(paper = y, date_info = timezone.now(), price_now = b[y]['currentPrice'], ask = a[y]['ask'], bid =  a[y]['bid'],
-            high_price = a[y]['dayHigh'], low_price = a[y]['dayLow'], open_price = a[y]['open'], estimated_close_price = a[y]['previousClose'],
-            volume = a[y]['volume'])
+            query2 = Prices(paper = y, date_info = timezone.now(), price_now = b[x]['currentPrice'], ask = a[x]['ask'], bid =  a[x]['bid'],
+            high_price = a[x]['dayHigh'], low_price = a[x]['dayLow'], open_price = a[x]['open'], estimated_close_price = a[x]['previousClose'],
+            volume = a[x]['volume'])
 
-            print(query2)
             query2.save()
+            print('Query saved')

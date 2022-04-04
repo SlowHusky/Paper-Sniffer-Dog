@@ -16,7 +16,6 @@ def getPriceFromPaper(paper):
     stock = getPaperFromSymbol(paper)
     return Prices.objects.filter(paper=stock)
 
-
 def getLatestPriceFromPaper(paper):
     stock = getPaperFromSymbol(paper)
     return Prices.objects.filter(paper=stock).latest('date_info')

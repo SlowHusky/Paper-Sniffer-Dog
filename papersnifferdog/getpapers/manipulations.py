@@ -16,6 +16,11 @@ def getPriceFromPaper(paper):
     stock = getPaperFromSymbol(paper)
     return Prices.objects.filter(paper=stock)
 
+
+def getLatestPriceFromPaper(paper):
+    stock = getPaperFromSymbol(paper)
+    return Prices.objects.filter(paper=stock).latest('date_info')
+
 def getMonitoredSymbols():
     monitored =[]
     for x in getAllDataPapers():
@@ -31,3 +36,10 @@ def addMonitoredBySymbol(lista):
         query = Monitoring(paper = a)
         query.save()
     print("Finnished")
+
+def getAllSymbols():
+    papers = []
+    for x in getAllDataPapers():
+        y = x.symbol
+        papers.append(y)
+    return papers 

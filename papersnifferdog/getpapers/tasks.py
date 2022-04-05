@@ -3,35 +3,36 @@ from django.utils import timezone
 from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
 from .models import Papers, Prices, Monitoring
 from papersnifferdog.celery import app
+from .calculator import gain, decision
 
 #tempo configurável, requisito do escopo
 app.conf.beat_schedule = {
-    'every-10-seconds': {
+    'every-1-minutes': {
         'task': 'getpapers.tasks.verify_tunnel',
-        'schedule': 60.0,
+        'schedule': 20.0,
         'args': (),
     },
-    'every-5-minutes': {
+    'every-7-minutes': {
         'task': 'getpapers.tasks.update_prices',
-        'schedule': 150.0,
+        'schedule': 420.0,
         'args': (),
     },
 }
 
 
-
-
+#Tunel de preços
 @app.task
 def verify_tunnel():
     papers = getMonitoredSymbols()
+
     for paper in papers:
         item = getLatestPriceFromPaper(paper)
-        #print(paper,item.price_now)
-'''        if item[0].price_now <= (item[0].open_price+item[0].open_price*0.1):
-            print(f'Vender {{paper}}')
+        print(f'abriu: {item.open_price} agora: {item.price_now}')
+        if item.open_price > 0:
+            change = item.price_now/item.open_price
+            decision(change)
         else:
-            print('Nada!')'''
-
+            print('Mercado fechado')
 @app.task
 def update_prices():
     list_papers = getAllSymbols()

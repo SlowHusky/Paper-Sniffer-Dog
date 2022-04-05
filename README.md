@@ -18,19 +18,17 @@ Para desenvolver o projeto, a ordem de criação dos elementos será a seguinte:
 1. Criação de uma consulta a API de ações da B3 **(desenvolvido)**
 2. Armazenar os dados da consulta em um banco de dados (usarei o sqlite3 por uma questão de conveniência. Quem testar o projeto saberá que ele foi escrito com um DB SQL e não precisará adicionar nada na sua máquina) **(desenvolvido)**
 3. Webpage para mostrar e listar às ações **(desenvolvido)**
-4. Ferramentas para configurar os ativos monitorados **(ainda não desenvolvido)**
+4. Ferramentas para configurar os ativos monitorados **(desenvolvido)**
 5. Sistema de envio de e-mails **(ainda não desenvolvido)**
 
-### Extras (ainda não desenvolvidos)
-
-1. Bot de mensagem via telegram
-2. Uso de uma página web com gráficos
+### Extras
+1. Páginas de informações das empresas
 
 ## Ferramentas usadas
 
-1. Python 3
-2. Django 4
-3. JQuery
-4. SQLite
-5. Yahooquery (https://yahooquery.dpguthrie.com/)
-6. Celery (Escalonador de tarefas)
+1. [Python 3.10](https://docs.python.org/3/)
+2. [Django 4](https://docs.djangoproject.com/pt-br/4.0/)
+3. [JQuery](https://api.jquery.com/)
+4. [SQLite](https://www.sqlite.org/docs.html)
+5. [Yahooquery](https://yahooquery.dpguthrie.com/)
+6. [Celery](https://docs.celeryq.dev/en/latest/index.html)

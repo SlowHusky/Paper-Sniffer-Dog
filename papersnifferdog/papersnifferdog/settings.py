@@ -132,5 +132,12 @@ CELERY_TIMEZONE = 'America/Sao_Paulo'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-DEFAULT_FROM_MAIL ='no-reply@meusite.com'
+
+#Nesse caso, simulei o envio usando o próprio backend do django
+#Alterar para testar com servidores reais
+'''EMAIL_HOST:  ''
+EMAIL_PORT: 25
+EMAIL_HOST_USER: ""
+EMAIL_HOST_PASSWORD: ""
+EMAIL_USE_TLS: False
+EMAIL_USE_SSL: False'''

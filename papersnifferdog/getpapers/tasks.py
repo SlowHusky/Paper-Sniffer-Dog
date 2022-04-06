@@ -4,6 +4,8 @@ from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
 from .models import Papers, Prices, Monitoring
 from papersnifferdog.celery import app
 from .calculator import gain, decision
+#teste
+from django.core.mail import send_mail
 
 #tempo configurável, requisito do escopo
 app.conf.beat_schedule = {
@@ -30,10 +32,11 @@ def verify_tunnel():
         print(f'abriu: {item.open_price} agora: {item.price_now}')
         if item.open_price > 0:
             change = item.price_now/item.open_price
-            decision(change)
+            decision(change, paper)
         else:
             print('Mercado fechado')
-            
+
+
 @app.task
 def update_prices():
     list_papers = getAllSymbols()

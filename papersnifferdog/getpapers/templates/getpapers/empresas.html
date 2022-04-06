@@ -1,113 +1,118 @@
 {% extends 'getpapers/header.html' %}
-
 {% block content %}
-<div class="container">
-    <h1>Informações do papel</h1>
-    <h2>Últimos dados:{{paper}}</h2>
-
-
-    <div class="row d-flex justify-content-center">
-    <table id="example" class="table table-striped"  style="width:50%">
-        <thead>
-            <tr>
-                <th>Item: Value</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr>
-                <td>maxAge: {{info.maxAge}}</td>
-            </tr>
-            <tr>
-                <td>priceHint: {{info.priceHint}}</td>
-            </tr>
-            <tr>
-                <td>previousClose: {{info.previousClose}}</td>
-            </tr>
-            <tr>
-                <td>open: {{info.open}}</td>
-            </tr>
-            <tr>
-                <td>dayLow: {{info.dayLow}}</td>
-            </tr>
-            <tr>
-                <td>dayHight: {{info.dayHigh}}</td>
-            </tr>
-            <tr>
-                <td>regularMarketPreviousClose: {{info.regularMarketPreviousClose}}</td>
-            </tr>
-            <tr>
-                <td>regularMarketOpen: {{info.regularMarketOpen}}</td>
-            </tr>
-            <tr>
-                <td>regularMarketDayLow: {{info.regularMarketDayLow}}</td>
-            </tr>
-            <tr>
-                <td>regularMarketDayHigh: {{info.regularMarketDayHigh}}</td>
-            </tr>
-            <tr>
-                <td>dividendRate: {{info.dividendRate}}</td>
-            </tr>
-            <tr>
-                <td>dividendYield: {{info.dividendYield}}</td>
-            </tr>
-            <tr>
-                <td>exDividendDate: {{info.exDividendDate}}</td>
-            </tr>
-            <tr>
-                <td>payoutRatio: {{info.payoutRatio}}</td>
-            </tr>
-            <tr>
-                <td>beta: {{info.beta}}</td>
-            </tr>
-            <tr>
-                <td>trailingPE: {{info.trailingPE}}</td>
-            </tr>
-            <tr>
-                <td>forwardPE: {{info.forwardPE}}</td>
-            </tr>
-            <tr>
-                <td>volume: {{info.volume}}</td>
-            </tr>
-            <tr>
-                <td>regularMarketVolume: {{info.regularMarketVolume}}</td>
-            </tr>
-            <tr>
-                <td>averageVolume: {{info.averageVolume}}</td>
-            </tr>
-            <tr>
-                <td>averageVolume10days: {{info.averageVolume10days}}</td>
-            </tr>
-            <tr>
-                <td>averageDailyVolume10Day: {{info.averageDailyVolume10Day}}</td>
-            </tr>
-            <tr>
-                <td>bis: {{info.bid}}</td>
-            </tr>
-            <tr>
-                <td>ask: {{info.ask}}</td>
-            </tr>
-            <tr>
-                <td>bidSize: {{info.bidSize}}</td>
-            </tr>
-            <tr>
-                <td>askSize: {{info.askSize}}</td>
-            </tr>
-            <tr>
-                <td>marketCap: {{info.marketCap}}</td>
-            </tr>
-            <tr>
-                <td>currency: {{info.currency}}</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Item: Value</th>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="container">
+        <h1>Informações do papel</h1>
+        <h2>Últimos dados:{{ paper }}</h2>
+        <div class="row d-flex justify-content-center">
+            <table id="data-table" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Item: Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Idade da ação: {{ info.maxAge }}</td>
+                    </tr>
+                    <tr>
+                        <td>Preço alvo: {{ info.priceHint }}</td>
+                    </tr>
+                    <tr>
+                        <td>Fechamento de ontem: {{ info.previousClose }}</td>
+                    </tr>
+                    <tr>
+                        <td>Abertura: {{ info.open }}</td>
+                    </tr>
+                    <tr>
+                        <td>Menor valor do dia: {{ info.dayLow }}</td>
+                    </tr>
+                    <tr>
+                        <td>Alta do dia: {{ info.dayHigh }}</td>
+                    </tr>
+                    <tr>
+                        <td>Fechamento do mercado regular: {{ info.regularMarketPreviousClose }}</td>
+                    </tr>
+                    <tr>
+                        <td>Abertura do mercado regular: {{ info.regularMarketOpen }}</td>
+                    </tr>
+                    <tr>
+                        <td>Baixa do mercado regular do dia: {{ info.regularMarketDayLow }}</td>
+                    </tr>
+                    <tr>
+                        <td>Alta do mercado regular do dia: {{ info.regularMarketDayHigh }}</td>
+                    </tr>
+                    <tr>
+                        <td>Dividend Rate: {{ info.dividendRate }}</td>
+                    </tr>
+                    <tr>
+                        <td>Dividend Yeld: {{ info.dividendYield }}</td>
+                    </tr>
+                    <tr>
+                        <td>Data dos dividendos: {{ info.exDividendDate }}</td>
+                    </tr>
+                    <tr>
+                        <td>Índice de distribuição de dividendo: {{ info.payoutRatio }}</td>
+                    </tr>
+                    <tr>
+                        <td>Beta: {{ info.beta }}</td>
+                    </tr>
+                    <tr>
+                        <td>Trailing PE: {{ info.trailingPE }}</td>
+                    </tr>
+                    <tr>
+                        <td>Forward PE: {{ info.forwardPE }}</td>
+                    </tr>
+                    <tr>
+                        <td>Volume: {{ info.volume }}</td>
+                    </tr>
+                    <tr>
+                        <td>Volume do mercado regular: {{ info.regularMarketVolume }}</td>
+                    </tr>
+                    <tr>
+                        <td>Média de Volume: {{ info.averageVolume }}</td>
+                    </tr>
+                    <tr>
+                        <td>Média Volume nos últimos 10 dias: {{ info.averageVolume10days }}</td>
+                    </tr>
+                    <tr>
+                        <td>Média diária de Volume nos últimos 10 dias: {{ info.averageDailyVolume10Day }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bid: {{ info.bid }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ask: {{ info.ask }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tamanho do Bid: {{ info.bidSize }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tamanho do Ask: {{ info.askSize }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Market Cap: {{ info.marketCap }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Moeda: {{ info.currency }}
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            Item: Value
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
-</div>
-{% include 'getpapers/footer.html' %}
-
+    {% include 'getpapers/footer.html' %}
 {% endblock content %}

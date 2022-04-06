@@ -9,14 +9,14 @@ from django.core.mail import send_mail
 
 #tempo configurável, requisito do escopo
 app.conf.beat_schedule = {
-    'every-1-minutes': {
+    'every-15-minutes': {
         'task': 'getpapers.tasks.verify_tunnel',
-        'schedule': 20.0,
+        'schedule': 900.0,
         'args': (),
     },
-    'every-7-minutes': {
+    'every-5-minutes': {
         'task': 'getpapers.tasks.update_prices',
-        'schedule': 420.0,
+        'schedule': 300.0,
         'args': (),
     },
 }

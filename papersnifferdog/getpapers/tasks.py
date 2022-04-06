@@ -33,6 +33,7 @@ def verify_tunnel():
             decision(change)
         else:
             print('Mercado fechado')
+            
 @app.task
 def update_prices():
     list_papers = getAllSymbols()
@@ -40,11 +41,8 @@ def update_prices():
             y = getPaperFromSymbol(x)
             a = returnTicker(x)
             b = a.financial_data
-            c = a.asset_profile
-            d = a.price
             a = a.summary_detail
             
-
             query2 = Prices(paper = y, date_info = timezone.now(), price_now = b[x]['currentPrice'], ask = a[x]['ask'], bid =  a[x]['bid'],
             high_price = a[x]['dayHigh'], low_price = a[x]['dayLow'], open_price = a[x]['open'], estimated_close_price = a[x]['previousClose'],
             volume = a[x]['volume'])

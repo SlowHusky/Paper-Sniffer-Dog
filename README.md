@@ -25,6 +25,7 @@ Optei pelo envio de e-mails pelo console pois já está formatado e deixei os pa
 
 ### Extras
 1. Páginas de informações das empresas
+2. Página para ver o log de alertas
 
 ## Ferramentas principais usadas
 

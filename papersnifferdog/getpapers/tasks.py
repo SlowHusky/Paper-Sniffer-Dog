@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 app.conf.beat_schedule = {
     'every-15-minutes': {
         'task': 'getpapers.tasks.verify_tunnel',
-        'schedule': 900.0,
+        'schedule': 600.0,
         'args': (),
     },
     'every-5-minutes': {

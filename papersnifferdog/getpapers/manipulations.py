@@ -3,7 +3,7 @@
     ou manipular querys grandes                      '''
 
 
-from .models import Papers, Prices, Monitoring
+from .models import Papers, Prices, Monitoring, Logmessages
 
 def getAllDataPapers():
     return Papers.objects.all()
@@ -51,3 +51,10 @@ def getAllSymbols():
         y = x.symbol
         papers.append(y)
     return papers 
+
+def insertLogs(mensagem):
+    query = Logmessages(message = mensagem)
+    query.save()
+
+def getLatest100message():
+    return Logmessages.objects.all().order_by('-id')[:100]

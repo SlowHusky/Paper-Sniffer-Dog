@@ -27,3 +27,6 @@ class Prices(models.Model):
 class Monitoring(models.Model):
     paper = models.ForeignKey(Papers, on_delete=models.CASCADE)
     total_alerts = models.IntegerField(default=0)
+
+class Logmessages(models.Model):
+    message = models.CharField(max_length=200)

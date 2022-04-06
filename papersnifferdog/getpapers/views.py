@@ -3,8 +3,8 @@ from django.template import loader
 from django.http import HttpResponse
 from django.utils import timezone
 from .getdata import showBalancePaper, returnTicker, showPaperinformations
-from .models import Papers, Prices
-from .manipulations import getAllDataPapers, getMonitoredSymbols, addMonitoredBySymbol, getLatestPriceFromPaper, getLatest100PriceFromPaper
+from .models import Papers, Prices, Logmessages
+from .manipulations import getAllDataPapers, getMonitoredSymbols, addMonitoredBySymbol, getLatestPriceFromPaper, getLatest100message, getLatest100PriceFromPaper
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -115,4 +115,12 @@ def listenterprises(request):
         'names': names,
     }
     template = loader.get_template('getpapers/listenterprises.html')
+    return HttpResponse(template.render(context, request))
+
+def logs(request):
+    info = getLatest100message()
+    context ={
+        'info': info,
+    }
+    template = loader.get_template('getpapers/logs.html')
     return HttpResponse(template.render(context, request))

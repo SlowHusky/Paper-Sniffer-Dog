@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import homePageView, empresas, monitor, firstExec, listenterprises
+from .views import homePageView, empresas, monitor, firstExec, listenterprises, logs
 
 urlpatterns = [
     path('', homePageView, name='index'),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('monitor', monitor, name='monitor' ),
     path('firstexec', firstExec, name='first'),
     path('listenterprises', listenterprises, name='listenterprises'),
+    path('logs', logs, name='logs'),
 ]

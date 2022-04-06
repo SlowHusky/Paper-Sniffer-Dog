@@ -1,0 +1,24 @@
+{% extends 'getpapers/header.html' %}
+{% block content %}
+    <div class="container">
+        &nbsp<br>
+        <h2>Logs:</h2>
+        &nbsp<br>
+            <table id="data-table"
+                   class="table table-hover text-center py-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Log</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in info %}
+                                <tr>
+                                    <td>{{ log.message }}</td>
+                                </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'getpapers/footer.html' %}
+    {% endblock content %}

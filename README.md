@@ -45,3 +45,18 @@ Para testar, execute o virtualenv com às dependências do projeto, rode em um t
 Acesse ```http://localhost:8000/getpapers/firstexec``` e aguarde a inserção dos primeiros dados. Ao fim, você será direcionado a página inicial
 
 Abra outro terminal, ainda dentro do virtualenv e executar ```celery -A papersnifferdog worker -B -l info```
+
+Caso apareça na página inicial (index), que a abertura está com valor ```0.0```, isso significa que o mercado está fechado. No dia seguinte após a abertura, o sistema irá carregar o valor.
+
+## Algumas imagens do sistema
+
+
+![Index](Images/index.png "Index")
+
+![Infos](Images/infos.png "infos")
+
+![Logs](Images/logs.png "Logs")
+
+![Ações](Images/papers.png "Ações")
+
+![Monitorados](Images/monitorados.png "Monitorados")

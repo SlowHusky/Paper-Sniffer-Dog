@@ -38,7 +38,7 @@ Optei pelo envio de e-mails pelo console pois já está formatado e deixei os pa
 
 ## Testar
 
-Para testar, execute o virtualenv com às dependências do projeto, rode em um terminal separado o servidor redis com o comando ```redis-server```. Execute o servidor django, executando na pasta ```papersnifferdog``` o comando ```python manage.py runserver```
+Para testar, execute o virtualenv com às dependências do projeto, rode em um terminal separado o servidor redis com o comando ```redis-server```. Execute o servidor django, executando na pasta ```papersnifferdog``` o comando ```python3 manage.py runserver```
 
 
 Acesse ```http://localhost:8000/getpapers/firstexec``` e aguarde a inserção dos primeiros dados. Ao fim, você será direcionado a página inicial

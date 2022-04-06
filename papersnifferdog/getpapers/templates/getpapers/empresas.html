@@ -5,11 +5,12 @@
         <table id="data-table" class="table table-striped">
             <thead>
                 <tr>
-                    <th>Ação</th>
-                    <th>Preço atual</th>
+                    <th>Cotação atualizada</th>
+                    <th>Preço de abertura</th>
                     <th>Menor oferta de venda</th>
                     <th>Maior oferta de compra</th>
-                    <th>Abertura</th>
+                    <th>Maior preço do dia</th>
+                    <th>Menor preço do dia</th>
                     <th>Horário</th>
                 </tr>
             </thead>
@@ -20,18 +21,20 @@
                         <td>{{ item.open_price }}</td>
                         <td>{{ item.ask }}</td>
                         <td>{{ item.bid }}</td>
-                        <td>{{ item.open_price }}</td>
+                        <td>{{ item.high_price }}</td>
+                        <td>{{ item.low_price }}</td>
                         <td>{{ item.date_info }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Ação</th>
-                    <th>Preço atual</th>
+                    <th>Cotação atualizada</th>
+                    <th>Preço de abertura</th>
                     <th>Menor oferta de venda</th>
                     <th>Maior oferta de compra</th>
-                    <th>Abertura</th>
+                    <th>Maior preço do dia</th>
+                    <th>Menor preço do dia</th>
                     <th>Horário</th>
                 </tr>
             </tfoot>

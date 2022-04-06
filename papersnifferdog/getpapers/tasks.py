@@ -1,3 +1,4 @@
+from distutils.log import error
 from .manipulations import *
 from django.utils import timezone
 from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
@@ -45,10 +46,12 @@ def update_prices():
             a = returnTicker(x)
             b = a.financial_data
             a = a.summary_detail
-            
+
             query2 = Prices(paper = y, date_info = timezone.now(), price_now = b[x]['currentPrice'], ask = a[x]['ask'], bid =  a[x]['bid'],
             high_price = a[x]['dayHigh'], low_price = a[x]['dayLow'], open_price = a[x]['open'], estimated_close_price = a[x]['previousClose'],
             volume = a[x]['volume'])
-
-            query2.save()
-            print('Query saved')
+            try:
+                query2.save()
+                print('Query saved')
+            except error:
+                print(query2)

@@ -2,8 +2,6 @@
 {% block content %}
     <div class="container">
         <h2>lista de ações:</h2>
-        <form method="post">
-            {% csrf_token %}
             <table id="data-table"
                    class="table table-hover text-center py-3">
                 <thead>
@@ -11,7 +9,6 @@
                         <th scope="col">#</th>
                         <th scope="col">Nome da empresa</th>
                         <th scope="col">Nome do papel</th>
-                        <th scope="col">Monitorada</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,17 +21,6 @@
                                     <td>
                                         <a href="/getpapers/empresas/{{x}}">{{x }}</a>
                                     </td>
-                                    <td>
-                                        {% if x in monitored %}
-                                            <input class="align-middle"
-                                                   type="checkbox"
-                                                   name="check"
-                                                   value="{{x}}"
-                                                   checked>
-                                        {% else %}
-                                            <input class="align-middle" type="checkbox" name="check" value="{{x}}">
-                                        {% endif %}
-                                    </td>
                                 </tr>
                             {% endif %}
                         {% endfor %}
@@ -42,11 +28,5 @@
                 </tbody>
             </table>
         </div>
-        <div class="text-center py-3 justify-content-center">
-            <input class="btn btn-primary btn-sm"
-                   type="submit"
-                   value="Enviar para monitoramento">
-        </form>
-        </div>
-        {% include 'getpapers/footer.html' %}
+    {% include 'getpapers/footer.html' %}
     {% endblock content %}

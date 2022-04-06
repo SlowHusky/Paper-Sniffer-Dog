@@ -1,15 +1,76 @@
 {% extends 'getpapers/header.html' %}
 {% block content %}
     <div class="container">
-        <h1>Informações do papel</h1>
-        <h2>Últimos dados:{{ paper }}</h2>
-        <div class="row d-flex justify-content-center">
-            <table id="data-table" class="table table-striped">
-                <thead>
+        <h2>Últimos dados: {{ paper }}</h2>
+        <table id="data-table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ação</th>
+                    <th>Preço atual</th>
+                    <th>Menor oferta de venda</th>
+                    <th>Maior oferta de compra</th>
+                    <th>Abertura</th>
+                    <th>Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in latest_data %}
                     <tr>
-                        <th>Item: Value</th>
+                        <td>{{ item.price_now }}</td>
+                        <td>{{ item.open_price }}</td>
+                        <td>{{ item.ask }}</td>
+                        <td>{{ item.bid }}</td>
+                        <td>{{ item.open_price }}</td>
+                        <td>{{ item.date_info }}</td>
                     </tr>
-                </thead>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Ação</th>
+                    <th>Preço atual</th>
+                    <th>Menor oferta de venda</th>
+                    <th>Maior oferta de compra</th>
+                    <th>Abertura</th>
+                    <th>Horário</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        &nbsp<br>
+        &nbsp<br>
+
+        <h2>Dados da empresa </h2>
+        &nbsp<br>
+        <div class="row d-flex justify-content-center">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>{{ enterprise.longBusinessSummary }}</td>
+                    </tr>
+                    <tr>
+                        <td>Número de empregados: {{ enterprise.fullTimeEmployees }}</td>
+                    </tr> 
+                    <tr>
+                        <td>Setor: {{ enterprise.sector }}</td>
+                    </tr>    
+                    <tr>
+                        <td>Website: <a href="{{ enterprise.website }}" >{{ enterprise.website }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Endereço: {{ enterprise.address1 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        &nbsp<br>
+        &nbsp<br>
+
+        <h2>Informações do papel</h2>
+        &nbsp<br>
+        <div class="row d-flex justify-content-center">
+            <table class="table table-striped">
                 <tbody>
                     <tr>
                         <td>Idade da ação: {{ info.maxAge }}</td>
@@ -104,13 +165,6 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>
-                            Item: Value
-                        </th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

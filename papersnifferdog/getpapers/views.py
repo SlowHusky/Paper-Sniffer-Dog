@@ -1,12 +1,10 @@
-from datetime import datetime, time, date
-from genericpath import exists
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.template import loader
 from django.http import HttpResponse
 from django.utils import timezone
-from .getdata import showAllPapers, showOnePaper, showBalancePaper, returnTicker
-from .models import Papers, Prices, Monitoring
-from .manipulations import getAllDataPapers, getPriceFromPaper, getAllMonitoring, getMonitoredSymbols, addMonitoredBySymbol, getLatestPriceFromPaper
+from .getdata import showBalancePaper, returnTicker, showPaperinformations
+from .models import Papers, Prices
+from .manipulations import getAllDataPapers, getMonitoredSymbols, addMonitoredBySymbol, getLatestPriceFromPaper, getLatest100PriceFromPaper
 
 
 acoes = ["ABCB4.SA", "ALPA4.SA", "ALUP11.SA", "ABEV3.SA", "ANIM3.SA", "ARZZ3.SA",
@@ -58,7 +56,6 @@ def monitor(request):
         for x in a:
             data_name.append(x.symbol)
             names.append(x.title)
-        print(list_monitored)
         context = {
             'data_name': data_name,
             'monitored': list_monitored,
@@ -75,9 +72,13 @@ def empresas(request,paper):
     info = showBalancePaper(paper)
     info = info[paper]
     print(info['regularMarketDayLow'])
+    enterprise = showPaperinformations(paper)
+    latest_data = getLatest100PriceFromPaper(paper)
     context ={
         'paper':paper,
         'info': info,
+        'latest_data': latest_data,
+        'enterprise': enterprise,
     }
     template = loader.get_template('getpapers/empresas.html')
     return HttpResponse(template.render(context, request))
@@ -101,3 +102,17 @@ def firstExec(request):
         return redirect('./')
     else:
         return redirect('./')
+
+def listenterprises(request):
+    data_name = []
+    names = []
+    a = getAllDataPapers()
+    for x in a:
+        data_name.append(x.symbol)
+        names.append(x.title)
+    context = {
+        'data_name': data_name,
+        'names': names,
+    }
+    template = loader.get_template('getpapers/listenterprises.html')
+    return HttpResponse(template.render(context, request))

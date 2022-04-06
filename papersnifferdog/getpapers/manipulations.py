@@ -1,3 +1,8 @@
+''' Biblioteca para a interagir com o banco de dados,
+    sem criar problemas de segurança
+    ou manipular querys grandes                      '''
+
+
 from .models import Papers, Prices, Monitoring
 
 def getAllDataPapers():
@@ -19,6 +24,10 @@ def getPriceFromPaper(paper):
 def getLatestPriceFromPaper(paper):
     stock = getPaperFromSymbol(paper)
     return Prices.objects.filter(paper=stock).latest('date_info')
+
+def getLatest100PriceFromPaper(paper):
+    stock = getPaperFromSymbol(paper)
+    return Prices.objects.filter(paper=stock).order_by('-id')[:100:-1]
 
 def getMonitoredSymbols():
     monitored =[]
